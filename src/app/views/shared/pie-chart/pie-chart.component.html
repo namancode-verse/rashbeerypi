@@ -1,0 +1,15 @@
+<div class="pie-chart">
+     <div class="chart-section">
+          <div class="chart-container">
+               <ngx-charts-pie-chart [view]="view" [scheme]="colorScheme" [results]="single" [doughnut]="true" class="hide-tooltip"> </ngx-charts-pie-chart>
+               <div class="center-text">
+                    <div class="icon">
+                         <i [ngClass]="iconClass"></i>
+                    </div>
+                    <div class="text">{{ percentage }}%</div>
+               </div>
+          </div>
+          <div class="chart-title">{{ CurrentNumber }}/{{ TotalNumber }}</div>
+          <div class="chart-subtitle">{{ PieTitle }}</div>
+     </div>
+</div>

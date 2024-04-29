@@ -1,0 +1,32 @@
+<ng-container *ngIf="isUserLoggedIn">
+     <div class="side-panel">
+          <div class="side-nav">
+               <ul>
+                    <ng-container *ngFor="let menu of menus">
+                         <ng-container *ngIf="menu.display">
+                              <ng-container *ngIf="menu.alias != 'property-portfolio'">
+                                   <li>
+                                        <a [ngClass]="menu.active ? 'active' : ''" (click)="handleMenuNavigation(menu); toggleMenuOnMobile()">
+                                             <img [src]="'../../../../assets/images/sidebar-icons/' + menu.icon" alt="" />
+                                             <span> {{ menu.name }} </span>
+                                        </a>
+                                   </li>
+                              </ng-container>
+                              <ng-container *ngIf="menu.alias == 'property-portfolio'">
+                                   <ng-container *ngIf="user && user['tenant']">
+                                        <ng-container *ngIf="user['tenant']['tenantType'] == 'DEVELOPER'">
+                                             <li>
+                                                  <a [ngClass]="menu.active ? 'active' : ''" (click)="handleMenuNavigation(menu); toggleMenuOnMobile()">
+                                                       <img [src]="'../../../../assets/images/sidebar-icons/' + menu.icon" alt="" />
+                                                       <span> {{ menu.name }} </span>
+                                                  </a>
+                                             </li>
+                                        </ng-container>
+                                   </ng-container>
+                              </ng-container>
+                         </ng-container>
+                    </ng-container>
+               </ul>
+          </div>
+     </div>
+</ng-container>

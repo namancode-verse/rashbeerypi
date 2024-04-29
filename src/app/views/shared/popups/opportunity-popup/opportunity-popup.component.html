@@ -1,0 +1,95 @@
+<ng-container *ngIf="dialogboxDetails">
+     <div class="building-popup">
+          <div class="popup-box" [ngStyle]="{ 'max-width': dialogBoxMaxWidth }">
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="tilte-with-action-button">
+                              <div class="field-title">
+                                   <ng-container *ngIf="dialogboxDetails.action.title">
+                                        <b> {{ dialogboxDetails.action.title }} </b>
+                                   </ng-container>
+                              </div>
+                              <div (click)="hidePopupBox()" class="close-button">
+                                   <i class="fas fa-times"></i>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="form-container">
+                              <form role="form" [formGroup]="popupOpportunityForm" *ngIf="popupOpportunityForm">
+                                   <div class="row">
+                                        <ng-container *ngFor="let element of popupOpportunityTemplate | keyvalue : keepOrder; index as elementIndex">
+                                             <ng-container *ngTemplateOutlet="SingleFormTemplate; context: { data: { formGroup: popupOpportunityForm, element: element, elementIndex: elementIndex } }"></ng-container>
+                                        </ng-container>
+                                   </div>
+                              </form>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12">
+                         <div class="cancel-and-save-button">
+                              <ng-container *ngIf="dialogboxDetails">
+                                   <div class="action-button">
+                                        <button mat-raised-button type="submit" (click)="hidePopupBox()" color="primary">
+                                             <span>Cancel</span>
+                                        </button>
+                                   </div>
+                                   <div class="save-button">
+                                        <button mat-raised-button type="submit" (click)="submitpopupOpportunityForm()" color="primary">
+                                             <span>Save</span>
+                                        </button>
+                                   </div>
+                              </ng-container>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</ng-container>
+
+<ng-template #SingleFormTemplate let-object="data">
+     <div class="col-md-6" [formGroup]="object.formGroup">
+          <ng-container *ngIf="object.element.value.tag != 'textarea'">
+               <div class="row inventory-row">
+                    <div class="col-md-12 widget-column">
+                         <label [for]="object.element.value.name">
+                              {{ object.element.value.label }}
+                         </label>
+                    </div>
+                    <div class="col-md-12 widget-column">
+                         <ng-container *ngIf="object.element.value.tag == 'input'">
+                              <ng-container *ngIf="object.element.value.type == 'text'">
+                                   <input type="text" (blur)="displaySingleFormError()" [id]="object.element.value.name" [formControlName]="object.element.value.name" [value]="object.element.value.default.value" class="form-control" />
+                              </ng-container>
+                              <ng-container *ngIf="object.element.value.type == 'date'">
+                                   <input type="date" (blur)="displaySingleFormError()" [id]="object.element.value.name" [formControlName]="object.element.value.name" [value]="object.element.value.default.value" class="form-control" />
+                              </ng-container>
+                         </ng-container>
+                         <ng-container *ngIf="object.element.value.tag == 'select'">
+                              <ng-container *ngIf="object.element.value.type == 'dropdown'">
+                                   <select [id]="object.element.value.name" (blur)="displaySingleFormError()" [formControlName]="object.element.value.name" [value]="object.element.value.default.value" class="form-control">
+                                        <ng-container *ngIf="object.element.value.options && object.element.value.options.length > 0">
+                                             <ng-container *ngFor="let element of object.element.value.options">
+                                                  <option [value]="element.value">{{ element.name }}</option>
+                                             </ng-container>
+                                        </ng-container>
+                                   </select>
+                                   <span class="drodown-icon">
+                                        <i class="fas fa-chevron-down"></i>
+                                   </span>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+                    <ng-container *ngIf="formErrors && formErrors[object.element.value.name]">
+                         <div class="col-md-12">
+                              <div class="field-errors">
+                                   {{ formErrors[object.element.value.name] }}
+                              </div>
+                         </div>
+                    </ng-container>
+               </div>
+          </ng-container>
+     </div>
+</ng-template>

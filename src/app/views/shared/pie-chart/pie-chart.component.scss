@@ -1,0 +1,55 @@
+.pie-chart {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     justify-content: center;
+     padding-bottom: 1em;
+}
+
+.chart-container {
+     position: relative;
+     display: inline-block;
+}
+
+.chart-title {
+     text-align: center;
+     font-size: 14px;
+     color: #636262;
+     font-weight: 500;
+     font-family: system-ui;
+}
+.chart-subtitle {
+     text-align: center;
+     font-size: 14px;
+     color: #636262;
+     font-weight: 500;
+     font-family: system-ui;
+}
+
+.center-text {
+     position: absolute;
+     top: 50%;
+     left: 50%;
+     transform: translate(-50%, -50%);
+
+     .icon {
+          text-align: center;
+          font-size: 24px;
+          font-weight: 500;
+          margin-bottom: 6px;
+          color: #d6d6d6;
+     }
+
+     .text {
+          text-align: center;
+          font-size: 16px;
+          font-weight: 500;
+          padding-left: 10px;
+          color: #2d2d2d;
+     }
+}
+
+p {
+     margin: 0;
+     padding: auto;
+}

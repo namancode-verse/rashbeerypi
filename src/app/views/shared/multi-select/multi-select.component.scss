@@ -1,0 +1,101 @@
+.multi-select-dropdown {
+     position: relative;
+
+     cursor: pointer;
+     -webkit-touch-callout: none;
+     -webkit-user-select: none;
+     -khtml-user-select: none;
+     -moz-user-select: none;
+     -ms-user-select: none;
+     user-select: none;
+
+     border: 1px solid #dee2e6;
+     padding: 8px 8px;
+     border-radius: 6px;
+
+     .multi-select-menu {
+          z-index: 10;
+          position: absolute;
+          min-width: 260px;
+          background-color: white;
+          top: 40px;
+          left: 0px;
+
+          .multi-select-card {
+               box-shadow: 0px 2px 1px -1px #00000033, 0px 1px 1px 0px #00000024, 0px 1px 3px 0px #0000001f;
+               .card {
+                    border: none;
+
+                    .action-button {
+                         border-bottom: 1px solid #d1d1d1;
+
+                         .check-box-and-label {
+                              display: flex;
+                              justify-content: flex-start;
+                              width: 100%;
+                              padding: 4px 4px;
+                              cursor: pointer;
+
+                              .check-box {
+                                   margin-top: auto;
+                                   margin-bottom: auto;
+                                   text-align: center;
+                                   padding: 2px 10px;
+
+                                   input {
+                                        height: 18px;
+                                        width: 18px;
+                                        margin-top: 4px;
+                                   }
+                              }
+
+                              .label {
+                                   margin-top: auto;
+                                   margin-bottom: auto;
+                                   font-size: 16px;
+                              }
+                         }
+                    }
+               }
+          }
+     }
+
+     .select-icon {
+          position: absolute;
+          right: 10px;
+          top: 6px;
+          font-size: 20px;
+          color: grey;
+     }
+
+     .check-box-and-label {
+          display: flex;
+          justify-content: flex-start;
+          width: 100%;
+          padding: 2px 4px;
+          cursor: pointer;
+
+          .check-box {
+               margin-top: auto;
+               margin-bottom: auto;
+               text-align: center;
+               padding: 2px 10px;
+
+               input {
+                    width: 18px;
+                    height: 18px;
+                    margin-top: 4px;
+               }
+          }
+
+          .label {
+               margin-top: auto;
+               margin-bottom: auto;
+          }
+     }
+}
+
+.rotate180 {
+     transition: 400ms;
+     transform: rotate(180deg);
+}

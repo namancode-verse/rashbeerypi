@@ -1,0 +1,38 @@
+<div class="multi-select-dropdown">
+     <div (click)="onMenuClick()" class="multi-select-placeholder">
+          <span> {{ selectedElements ? selectedElements : placeHolder }} </span>
+     </div>
+     <div (click)="onMenuClick()" class="select-icon">
+          <span><i class="fas fa-caret-down" [ngClass]="isVisibleMenu ? 'rotate180' : ''"></i></span>
+     </div>
+     <ng-container *ngIf="isVisibleMenu">
+          <div class="multi-select-menu">
+               <div class="multi-select-card">
+                    <div class="card">
+                         <div (click)="toggleSelectAllElement()" class="action-button">
+                              <div class="check-box-and-label">
+                                   <div class="check-box">
+                                        <input [checked]="isSelectedAllElements" type="checkbox" id="select-all-elements" />
+                                   </div>
+                                   <div class="label">
+                                        <span> {{ isSelectedAllElements ? 'Deselect All' : 'Select All' }} </span>
+                                   </div>
+                              </div>
+                         </div>
+                         <ng-container *ngIf="true">
+                              <ng-container *ngFor="let element of options; index as elementIndex">
+                                   <div (click)="onSelectElement(element)" class="check-box-and-label">
+                                        <div class="check-box">
+                                             <input [checked]="element.selected" type="checkbox" [id]="id + elementIndex" />
+                                        </div>
+                                        <div class="label">
+                                             {{ element.name }}
+                                        </div>
+                                   </div>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+               </div>
+          </div>
+     </ng-container>
+</div>

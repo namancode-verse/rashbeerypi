@@ -1,0 +1,164 @@
+<div class="organization">
+     <div class="container-fluid">
+          <div class="row">
+               <div class="col-md-12 p-0">
+                    <div class="common-view">
+                         <div class="stepper-form">
+                              <mat-stepper>
+                                   <mat-step>
+                                        <ng-template matStepLabel class="mat-custom-label">
+                                             <span>Step 1</span>
+                                             <p>Building</p>
+                                             <small class="form-step-completed">Completed</small>
+                                        </ng-template>
+
+                                        <form role="form" [formGroup]="buildingFormGroup" *ngIf="buildingFormGroup">
+                                             <ng-container *ngFor="let element of buildingTemplate | keyvalue : keepOrder; index as elementIndex">
+                                                  <ng-container *ngTemplateOutlet="BuildingFormTemplate; context: { data: { formGroup: buildingFormGroup, element: element, elementIndex: elementIndex } }"></ng-container>
+                                             </ng-container>
+                                        </form>
+
+                                        <div class="next-previous-button">
+                                             <button mat-raised-button (click)="submitBuildingForm()">Next</button>
+                                             <button #buildingFormSubmitButton mat-raised-button matStepperNext class="d-none">Next</button>
+                                        </div>
+                                   </mat-step>
+                                   <mat-step>
+                                        <ng-template matStepLabel class="mat-custom-label">
+                                             <span>Step 2</span>
+                                             <p>Floors</p>
+                                             <small>In Progress</small>
+                                        </ng-template>
+                                        <div class="container-fluid mt-3 p-0">
+                                             <div class="row">
+                                                  <div class="col-md-12">
+                                                       <ng-container *ngIf="currentBuildingDetails">
+                                                            <app-building-floors [buildingDetails]="currentBuildingDetails"></app-building-floors>
+                                                       </ng-container>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="next-previous-button">
+                                             <button mat-raised-button matStepperPrevious>Back</button>
+                                             <button mat-raised-button matStepperNext>Next</button>
+                                        </div>
+                                   </mat-step>
+                                   <mat-step>
+                                        <ng-template matStepLabel class="mat-custom-label">
+                                             <span>Step 3</span>
+                                             <p>Units</p>
+                                             <small>In Progress</small>
+                                        </ng-template>
+                                        <div class="container-fluid mt-3 p-0">
+                                             <div class="row">
+                                                  <div class="col-md-12">
+                                                       <ng-container *ngIf="currentBuildingDetails">
+                                                            <app-building-units [buildingDetails]="currentBuildingDetails"></app-building-units>
+                                                       </ng-container>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="next-previous-button">
+                                             <button mat-raised-button matStepperPrevious>Back</button>
+                                             <button mat-raised-button matStepperNext>Next</button>
+                                        </div>
+                                   </mat-step>
+                                   <mat-step>
+                                        <ng-template matStepLabel class="mat-custom-label">
+                                             <span>Step 4</span>
+                                             <p>Leases</p>
+                                             <small>In Progress</small>
+                                        </ng-template>
+                                        <div class="container-fluid mt-3 p-0">
+                                             <div class="row">
+                                                  <div class="col-md-12">
+                                                       <ng-container *ngIf="currentBuildingDetails">
+                                                            <app-building-leases [buildingDetails]="currentBuildingDetails"></app-building-leases>
+                                                       </ng-container>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="next-previous-button">
+                                             <button mat-raised-button matStepperPrevious>Back</button>
+                                        </div>
+                                   </mat-step>
+
+                                   <ng-template matStepperIcon="phone">
+                                        <mat-icon>call_end</mat-icon>
+                                   </ng-template>
+                                   <ng-template matStepperIcon="chat">
+                                        <mat-icon>forum</mat-icon>
+                                   </ng-template>
+                              </mat-stepper>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
+
+<ng-template #BuildingFormTemplate let-object="data">
+     <div [formGroup]="object.formGroup" class="container-fluid mt-3 p-0 has-stepper-form">
+          <div class="row" formGroupName="{{ object.element.key }}">
+               <div class="col-md-12">
+                    <h4>{{ beautifyLabel(object.element.key) }}</h4>
+               </div>
+               <ng-container *ngFor="let childElement of object.element.value | keyvalue : keepOrder">
+                    <ng-container *ngIf="childElement.value.tag == 'textarea'">
+                         <ng-container *ngIf="childElement.value.type == 'text'">
+                              <div class="col-md-12">
+                                   <div class="form-group">
+                                        <label [for]="childElement.value.name">
+                                             {{ childElement.value.label }}
+                                        </label>
+                                        <textarea rows="4" (blur)="displaySingleFormError(object.element.key)" [id]="childElement.value.name" [formControlName]="childElement.value.name" [value]="childElement.value.default.value" class="form-control"></textarea>
+                                   </div>
+                              </div>
+                         </ng-container>
+                    </ng-container>
+                    <ng-container *ngIf="childElement.value.tag != 'textarea'">
+                         <div class="col-md-4">
+                              <div class="form-group">
+                                   <label [for]="childElement.value.name">
+                                        {{ childElement.value.label }}
+                                   </label>
+                                   <ng-container *ngIf="childElement.value.tag == 'input'">
+                                        <ng-container *ngIf="childElement.value.type == 'text'">
+                                             <input type="text" (blur)="displaySingleFormError(object.element.key)" [id]="childElement.value.name" [formControlName]="childElement.value.name" [value]="childElement.value.default.value" class="form-control" />
+                                        </ng-container>
+                                        <ng-container *ngIf="childElement.value.type == 'date'">
+                                             <input type="date" (blur)="displaySingleFormError(object.element.key)" [id]="childElement.value.name" [formControlName]="childElement.value.name" [value]="childElement.value.default.value" class="form-control" />
+                                        </ng-container>
+                                   </ng-container>
+                                   <ng-container *ngIf="childElement.value.tag == 'select'">
+                                        <ng-container *ngIf="childElement.value.type == 'dropdown'">
+                                             <select [id]="childElement.value.name" (blur)="displaySingleFormError(object.element.key)" [formControlName]="childElement.value.name" [value]="childElement.value.default.value" class="form-control">
+                                                  <ng-container *ngIf="childElement.value.options && childElement.value.options.length > 0">
+                                                       <ng-container *ngFor="let element of childElement.value.options">
+                                                            <option [value]="element.name">{{ element.name }}</option>
+                                                       </ng-container>
+                                                  </ng-container>
+                                             </select>
+                                             <div class="dropdown-icon">
+                                                  <i class="fas fa-chevron-down"></i>
+                                             </div>
+                                        </ng-container>
+                                   </ng-container>
+                                   <ng-container *ngIf="childElement.value.tag == 'multi-select'">
+                                        <ng-container *ngIf="childElement.value.type == 'multiDropdown'">
+                                             <app-multi-select [placeHolder]="'Select ' + childElement.value.label" [options]="childElement.value.options" (change)="printBuildingCertifications($event)" [formControlName]="childElement.value.name"></app-multi-select>
+                                        </ng-container>
+                                   </ng-container>
+
+                                   <ng-container *ngIf="formErrors && formErrors[object.element.key] && formErrors[object.element.key][childElement.value.name]">
+                                        <div class="field-errors">
+                                             {{ formErrors[object.element.key][childElement.value.name] }}
+                                        </div>
+                                   </ng-container>
+                              </div>
+                         </div>
+                    </ng-container>
+               </ng-container>
+          </div>
+     </div>
+</ng-template>

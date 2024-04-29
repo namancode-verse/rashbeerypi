@@ -1,0 +1,19 @@
+.users-container {
+     .container {
+          .card {
+               padding: 10px 12px;
+               margin: 12px 0px;
+
+               table {
+                    width: 100%;
+                    tr {
+                         th,
+                         td {
+                              padding: 4px 4px;
+                              width: 20%;
+                         }
+                    }
+               }
+          }
+     }
+}

@@ -1,0 +1,74 @@
+<div class="upload-images-dialogbox">
+     <div class="main-container">
+          <div class="main-card">
+               <div class="row card-row">
+                    <div class="col-md-12">
+                         <div class="tilte-with-action-button">
+                              <div class="field-title">
+                                   <b>{{ headerTitle }}</b>
+                              </div>
+                              <div (click)="hideUploadFilePopupBox()" class="close-button">
+                                   <i class="fas fa-times"></i>
+                              </div>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12">
+                         <div class="app-lite-divider"></div>
+                    </div>
+
+                    <div class="col-md-12">
+                         <div class="file-view-widget">
+                              <div class="row widget-row">
+                                   <ng-container *ngIf="temporaryImageList.length == 0">
+                                        <div class="col-md-12">
+                                             <div class="image-container">
+                                                  <img src="https://cdn-icons-png.freepik.com/512/9166/9166846.png" alt="" />
+                                             </div>
+                                             <div class="select-file-button">
+                                                  <button mat-raised-button (click)="selectFileForUpdatePost.click()">
+                                                       <span>Select Files</span>
+                                                  </button>
+                                             </div>
+                                             <input type="file" [multiple]="isUploadMultiple" style="display: none" accept="image/*" #selectFileForUpdatePost (change)="getAndSetPostableFiles($event)" />
+                                        </div>
+                                   </ng-container>
+                              </div>
+                              <div class="row widget-row justify-content-start">
+                                   <ng-container *ngIf="temporaryImageList.length > 0">
+                                        <ng-container *ngFor="let image of temporaryImageList; index as postImageIndex">
+                                             <div class="col-12 col-sm-12 col-md-6 col-lg-4 image-column">
+                                                  <div class="selected-image-container">
+                                                       <i class="fas fa-times unselect-content-button" (click)="unSelectPostFiles(image.fileName)"></i>
+                                                       <img src="{{ image.location }}" alt="" />
+                                                  </div>
+                                             </div>
+                                        </ng-container>
+                                   </ng-container>
+                              </div>
+                         </div>
+                    </div>
+
+                    <ng-container *ngIf="temporaryImageList.length > 0">
+                         <div class="col-md-12">
+                              <div class="app-lite-divider"></div>
+                         </div>
+
+                         <div class="col-md-12">
+                              <div class="info-and-save-button">
+                                   <div class="info">
+                                        <span>Total {{ temporaryImageList.length }} <span *ngIf="temporaryImageList.length == 1">image is</span> <span *ngIf="temporaryImageList.length > 1">images are</span> seleted.</span>
+                                   </div>
+                                   <div class="action-button">
+                                        <button type="button" mat-raised-button (click)="uploadFiles()">
+                                             <span>Upload</span>
+                                             <small-spinner [color]="'white'" [size]="'14px'" [marginLeft]="'5px'" [spinnerId]="'upload-image'"></small-spinner>
+                                        </button>
+                                   </div>
+                              </div>
+                         </div>
+                    </ng-container>
+               </div>
+          </div>
+     </div>
+</div>

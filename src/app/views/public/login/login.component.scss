@@ -1,0 +1,137 @@
+.app-login {
+     font-family: 'Poppins', sans-serif !important;
+
+     .login-page {
+          background-image: url('../../../../assets/images/login/img2.png');
+          background-position: top;
+          background-repeat: no-repeat;
+          background-size: cover;
+          position: relative;
+          height: 100vh;
+          width: 100%;
+
+          .app-brand-nav {
+               height: 5em;
+               width: auto;
+
+               .app-brand-logo {
+                    padding: 10px;
+                    cursor: pointer;
+
+                    img {
+                         height: 40px;
+                         width: auto;
+                         cursor: pointer;
+                    }
+               }
+          }
+
+          .login-content {
+               align-items: center;
+
+               .login-left-content {
+                    margin-top: 5em;
+                    display: table;
+
+                    .login-page-headline {
+                         h2 {
+                              font-size: 26px;
+                              font-weight: 500;
+                              color: #000;
+                         }
+                    }
+
+                    .login-image-container {
+                         img {
+                              height: 25em;
+                              width: auto;
+                         }
+                    }
+               }
+
+               .login-right-content {
+                    margin-top: 6.5em;
+
+                    .headline {
+                         h2 {
+                              font-size: 21px;
+                              font-weight: 500;
+                              line-height: 20px;
+                              color: #000;
+                         }
+                    }
+
+                    form {
+                         padding-top: 10px;
+
+                         .input-group {
+                              max-width: 800px;
+                              margin: 15px auto;
+                              display: table;
+                              width: 100%;
+                              background-color: #fff;
+
+                              input {
+                                   outline: none;
+                                   width: 100%;
+                                   border-radius: 10px;
+                                   border: 1px solid rgb(233, 232, 232);
+                                   background-color: #f1f3f5;
+                                   height: 55px;
+                                   padding: 3px 15px;
+                                   font-weight: 500;
+                                   color: #000;
+                              }
+                              .google-re-captcha {
+                                   margin-bottom: 10px;
+
+                                   re-captcha {
+                                        width: 100%;
+                                   }
+                              }
+                         }
+                         .forget-password {
+                              p {
+                                   line-height: 25px;
+                                   padding-left: 76%;
+                                   color: #38966c;
+                                   font-size: 13px;
+                                   font-weight: 400;
+
+                                   &:hover {
+                                        color: #055833;
+                                        cursor: pointer;
+                                   }
+                              }
+                         }
+                         button {
+                              width: 100%;
+                              padding: 8px 0;
+                              letter-spacing: 1px;
+                              cursor: pointer;
+                              background-color: #38966c;
+                              color: #fff;
+                              border: 2px solid #38966c;
+                              padding: 3px 15px;
+                              border-radius: 20px;
+                              box-shadow: unset;
+                              transition: 0.3s;
+                              transition: all 0.3s ease-out 0s;
+                              outline: none;
+                              text-transform: none;
+                              height: 40px;
+
+                              &:hover {
+                                   background-color: #fff;
+                                   color: #38966c;
+                                   font-weight: 500;
+                              }
+                         }
+                    }
+               }
+          }
+     }
+}
+.company{
+     margin-top:20px;
+}

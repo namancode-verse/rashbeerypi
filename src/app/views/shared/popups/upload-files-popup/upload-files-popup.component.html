@@ -1,0 +1,109 @@
+<div class="upload-file-dialogbox">
+     <div class="main-container">
+          <div class="main-card">
+               <div class="row card-row">
+                    <div class="col-md-12">
+                         <div class="inner-main-title">
+                              <div class="title-with-action-button">
+                                   <div class="main-title">
+                                        <b> {{ dialogboxDetails ? dialogboxDetails.boxTitle : '' }} </b>
+                                   </div>
+                                   <div class="action-button">
+                                        <span (click)="closeUploadBoxComponent()" class="close-button">
+                                             <i class="fas fa-times"></i>
+                                        </span>
+                                   </div>
+                              </div>
+                         </div>
+                    </div>
+                    <div class="col-md-12">
+                         <div class="app-lite-divider"></div>
+                    </div>
+               </div>
+               <div class="row card-row">
+                    <div class="col-md-12">
+                         <ng-container *ngIf="selecetedFiles.length == 0">
+                              <ngx-file-drop accept="{{ dialogboxDetails.acceptFileType }}" dropZoneLabel="Drop files here" (onFileDrop)="dropped($event)">
+                                   <ng-template ngx-file-drop-content-tmp let-openFileSelector="openFileSelector">
+                                        <div class="container file-container">
+                                             <div class="row">
+                                                  <div class="col-md-12">
+                                                       <div class="upload-icon">
+                                                            <img src="https://cdn-icons-png.flaticon.com/256/8242/8242984.png" alt="" />
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row">
+                                                  <div class="col-md-12">
+                                                       <div class="title">
+                                                            <span> Drag a file here </span>
+                                                       </div>
+                                                  </div>
+                                                  <div class="col-md-12">
+                                                       <div class="subtitle">
+                                                            <b> Or</b>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                             <div class="row">
+                                                  <div class="col-md-12">
+                                                       <div class="action-button">
+                                                            <button id="file-select-button" mat-raised-button class="file-upload-button" type="button" (click)="openFileSelector()">
+                                                                 <span> Upload from your device </span>
+                                                            </button>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </ng-template>
+                              </ngx-file-drop>
+                         </ng-container>
+                         <ng-container *ngIf="selecetedFiles.length > 0">
+                              <div class="selected-file-container">
+                                   <div class="container">
+                                        <div class="row">
+                                             <div class="col-md-12">
+                                                  <div class="upload-icon">
+                                                       <img src="https://cdn-icons-png.flaticon.com/256/8242/8242984.png" alt="" />
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="col-md-12">
+                                                  <div class="selected-file-box">
+                                                       <ng-container *ngFor="let element of selecetedFiles; let i = index">
+                                                            <div class="selected-file-name">
+                                                                 <div class="name">
+                                                                      <span>
+                                                                           <i class="fas fa-file-alt"></i>
+                                                                      </span>
+                                                                      &nbsp;
+                                                                      <span>{{ element.relativePath }}</span>
+                                                                 </div>
+                                                                 <div class="clear-button">
+                                                                      <span (click)="clearSingleFile(element)">
+                                                                           <i class="fas fa-times"></i>
+                                                                      </span>
+                                                                 </div>
+                                                            </div>
+                                                       </ng-container>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="col-md-12">
+                                                  <div class="action-button">
+                                                       <button id="file-select-button" mat-raised-button class="file-upload-button" type="button" (click)="openFileSelector()">
+                                                            <span> Upload </span>
+                                                       </button>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </ng-container>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>

@@ -1,0 +1,147 @@
+<div class="opportunity">
+     <div class="container-fluid">
+          <div class="row">
+               <div class="col-md-12 p-0">
+                    <div class="common-view-tbl">
+                         <div class="common-view-tbl-header">
+                              <div class="container-fluid">
+                                   <div class="row">
+                                        <div class="col-auto">
+                                             <h4>
+                                                  Buildings <span> ({{ buildingsList.length }}) </span>
+                                             </h4>
+                                        </div>
+                                        <div class="col">
+                                             <ul class="tbl-view-btn">
+                                                  <li>
+                                                       <button [matMenuTriggerFor]="beforeMenu" type="button">
+                                                            <i class="fas fa-upload"></i>
+                                                            <span>Upload Inventory</span>
+                                                       </button>
+
+                                                       <mat-menu classList="upload-inventory-button-menu" #beforeMenu="matMenu" xPosition="before">
+                                                            <button (click)="uploadBuildingCSVFile()" mat-menu-item>Upload Buildings</button>
+                                                            <button (click)="uploadBuildingFloorCSVFile()" mat-menu-item>Upload Building Floors</button>
+                                                            <button (click)="uploadBuildingUnitCSVFile()" mat-menu-item>Upload Building Floors Units</button>
+                                                            <button (click)="uploadLeaseCSVFile()" mat-menu-item>Upload Leases</button>
+                                                       </mat-menu>
+                                                  </li>
+
+                                                  <li>
+                                                       <button (click)="navigateToNextScreen('/inventory/building')" type="button"><i class="fa-solid fa-plus"></i> <span>Create</span></button>
+                                                  </li>
+                                             </ul>
+                                        </div>
+                                   </div>
+                                   <div class="row">
+                                        <div class="col-md-12">
+                                             <div class="common-tbl-search">
+                                                  <i class="fa-solid fa-magnifying-glass"></i>
+                                                  <input type="search" placeholder="Search your text here..." [(ngModel)]="tableSearchText" (input)="searchByFreeText()" />
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="common-view-tbl-body">
+                              <table>
+                                   <thead>
+                                        <tr>
+                                             <th><input type="text" type="checkbox" /></th>
+                                             <th scope="col" [appSort]="filteredBuildingsList" data-order="asc" data-name="category">
+                                                  Building Name
+                                                  <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                  <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                             </th>
+                                             <th scope="col" [appSort]="filteredBuildingsList" data-order="asc" data-name="description">
+                                                  Building Description
+                                                  <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                  <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                             </th>
+                                             <th scope="col" [appSort]="filteredBuildingsList" data-order="asc" data-name="title">
+                                                  Building Title
+                                                  <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                  <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                             </th>
+                                             <th scope="col" [appSort]="filteredBuildingsList" data-order="asc" data-name="price">
+                                                  Building Structure
+                                                  <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                  <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                             </th>
+                                             <th scope="col" [appSort]="filteredBuildingsList" data-order="asc" data-name="price">
+                                                  City
+                                                  <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                  <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                             </th>
+                                             <th scope="col" [appSort]="filteredBuildingsList" data-order="asc" data-name="price">
+                                                  State
+                                                  <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                  <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                             </th>
+                                             <th scope="col" [appSort]="filteredBuildingsList" data-order="asc" data-name="price">
+                                                  Micro Market
+                                                  <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                  <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                             </th>
+                                             <th style="min-width: 120px; text-align: center">Action</th>
+                                        </tr>
+                                   </thead>
+                                   <tr class="tbl-search-tag">
+                                        <td></td>
+                                        <td><input type="text" type="search" placeholder="Search" /></td>
+                                        <td><input type="text" type="search" placeholder="Search" /></td>
+                                        <td><input type="text" type="search" placeholder="Search" /></td>
+                                        <td><input type="text" type="search" placeholder="Search" /></td>
+                                        <td><input type="text" type="search" placeholder="Search" /></td>
+                                        <td><input type="text" type="search" placeholder="Search" /></td>
+                                        <td><input type="text" type="search" placeholder="Search" /></td>
+                                        <td style="min-width: 120px"></td>
+                                   </tr>
+
+                                   <tbody>
+                                        <ng-container *ngIf="filteredBuildingsList && filteredBuildingsList.length > 0">
+                                             <ng-container *ngFor="let element of filteredBuildingsList">
+                                                  <ng-container *ngIf="element.IsActive">
+                                                       <tr>
+                                                            <td><input type="text" type="checkbox" /></td>
+                                                            <td>
+                                                                 <button class="tbl-link" (click)="editBuilding(element)" type="button">{{ element.BuildingName }}</button>
+                                                            </td>
+                                                            <td>{{ element.BuildingDescription }}</td>
+                                                            <td>{{ element.BuildingTitle }}</td>
+                                                            <td>{{ element.BuildingStructure }}</td>
+                                                            <td>{{ element.City }}</td>
+                                                            <td>{{ element.State }}</td>
+                                                            <td>{{ element.MicroMarket }}</td>
+
+                                                            <td style="min-width: 120px">
+                                                                 <ul class="tbl-action-icon">
+                                                                      <li title="Upload Images">
+                                                                           <button (click)="showUploadImagePopupBox(element, 'BuildingImage')" class="button">
+                                                                                <i class="fas fa-image"></i>
+                                                                           </button>
+                                                                      </li>
+                                                                      <li title="Edit Building">
+                                                                           <button (click)="editBuilding(element)" class="button">
+                                                                                <i class="fa-solid fa-pen-to-square"></i>
+                                                                           </button>
+                                                                      </li>
+                                                                      <li title="Remove Building">
+                                                                           <button (click)="removeBuilding(element)" class="button">
+                                                                                <i class="fa-regular fa-trash-can"></i>
+                                                                           </button>
+                                                                      </li>
+                                                                 </ul>
+                                                            </td>
+                                                       </tr>
+                                                  </ng-container>
+                                             </ng-container>
+                                        </ng-container>
+                                   </tbody>
+                              </table>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>

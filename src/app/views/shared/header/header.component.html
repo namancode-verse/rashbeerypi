@@ -1,0 +1,68 @@
+<div class="main-header">
+     <div class="container-fluid header-wrapper">
+          <div class="row">
+               <div class="col-12 col-lg-3 col-md-3 col-xs-9">
+                    <div class="main-logo">
+                         <img src="../../../../assets/images/icons/app-logo.png" alt="Repositree" routerLink="/" />
+                    </div>
+               </div>
+               <div class="col-12 col-lg-9 col-md-9 col-xs-9">
+                    <ng-container *ngIf="isUserLoggedIn">
+                         <nav class="user-profile navbar">
+                              <ul class="header-notification-icon">
+                                   <li>
+                                        <div class="user-icon user-profile-icon" (click)="userProfileToggle()">
+                                             <img src="../../../../assets/images/profile/download.jpeg" alt="" />
+                                        </div>
+                                   </li>
+                              </ul>
+                         </nav>
+                    </ng-container>
+               </div>
+          </div>
+     </div>
+</div>
+
+<div class="haeder-gapper"></div>
+
+<ng-container *ngIf="isUserLoggedIn && isUserProfileToggle">
+     <div class="user-profile-details">
+          <i (click)="userProfileToggle()" class="fa fa-times"></i>
+          <div class="user-profile-details-header">
+               <img src="../../../../assets/images/profile/download.jpeg" alt="" />
+               <ng-container *ngIf="user && user.profile">
+                    <p>{{ user.profile.name.first }} {{ user.profile.name.last }}</p>
+                    <ng-container *ngIf="user.profile.email">
+                         <a><i class="fas fa-envelope"></i> {{ user.profile.email }}</a>
+                    </ng-container>
+                    <ng-container *ngIf="user.profile.phone">
+                         <a><i class="fas fa-mobile-alt"></i> {{ user.profile.phone }}</a>
+                    </ng-container>
+                    <span>Available Credits : {{ user.credits }}</span>
+               </ng-container>
+          </div>
+          <div class="user-profile-details-body">
+               <ul>
+                    <li (click)="goToUserProfile()">
+                         <p><i class="fas fa-user-cog"></i> My Account</p>
+                    </li>
+                    <li (click)="resetPassword()">
+                         <p><i class="fas fa-user-cog"></i> Reset Password</p>
+                    </li>
+                    <li>
+                         <p (click)="userProfileToggle(); logout()"><i class="fas fa-power-off"></i> Logout</p>
+                    </li>
+               </ul>
+          </div>
+          <div class="user-profile-details-footer">
+               <ul>
+                    <li>
+                         <button (click)="termAndCondition()">Terms & Conditions</button>
+                    </li>
+                    <li>
+                         <button (click)="privacyPolicy()">Privacy Policy</button>
+                    </li>
+               </ul>
+          </div>
+     </div>
+</ng-container>

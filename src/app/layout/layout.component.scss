@@ -1,0 +1,21 @@
+.admin-main-view {
+     margin-top: 0px;
+     margin-left: 260px;
+     transition: 0.4s;
+     background-color: #0b0c0c;
+     min-height: 100vh;
+}
+
+.admin-main-view.toggle-view {
+     margin-left: 73px;
+}
+
+.routed-view {
+     min-height: calc(100vh - 157px);
+}
+
+@media only screen and (max-width: 1199px) {
+     .admin-main-view {
+          margin-left: 0px;
+     }
+}

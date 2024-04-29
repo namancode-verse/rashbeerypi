@@ -1,0 +1,53 @@
+.container {
+     .alert_box {
+          padding: 20px;
+
+          .icon {
+               display: flex;
+               justify-content: center;
+
+               padding: 10px;
+
+               .alert-icon {
+                    height: 100px;
+                    width: 100px;
+                    border-radius: 100%;
+                    border: 5px solid red;
+                    position: relative;
+                    i {
+                         position: absolute;
+                         top: 50%;
+                         left: 50%;
+                         transform: translate(-50%, -50%);
+                         font-size: 40px;
+                         color: red;
+                    }
+               }
+          }
+
+          .cnf-text {
+               text-align: center;
+               padding: 10px;
+               font-size: 24px;
+               font-weight: 600;
+          }
+          .subtitle-text {
+               text-align: center;
+               padding: 10px 10px 20px 10px;
+               font-size: 16px;
+               font-weight: 500;
+          }
+
+          .btns {
+               display: flex;
+               justify-content: space-around;
+               width: 100%;
+               div {
+                    width: 40%;
+                    button {
+                         width: 100%;
+                    }
+               }
+          }
+     }
+}

@@ -1,0 +1,135 @@
+@import '../../../../assets/scss/colors.scss';
+
+.side-panel {
+     left: 0;
+     top: 70px;
+     width: 260px;
+     min-height: calc(100vh - 70px);
+     padding: 8px 4px;
+     position: fixed;
+     border-right: 1px solid #0a09098a;
+     background-color:rgba(0, 0, 0, 0.676);
+
+     .side-nav {
+          ul {
+
+               li {
+                    a {
+                         img {
+                              max-width: 20px;
+                         }
+                    }
+               }
+          }
+     }
+
+     .side-nav-expansion {
+          .icon-and-button-title {
+               display: flex;
+               padding: 8px 6px;
+               cursor: pointer;
+               justify-content: flex-start;
+
+               .icon {
+                    padding: 0px 4px;
+                    color: #979797;
+               }
+               .button-title {
+                    padding: 0px 4px;
+                    color: #5a5a5a;
+
+                    .dropdown-icon {
+                         position: absolute;
+                         right: 10px;
+                         top: 8px;
+                    }
+               }
+          }
+     }
+}
+
+.user-thumb {
+     width: 45px;
+     height: 45px;
+     background: grey;
+     border-radius: 100%;
+     overflow: hidden;
+}
+
+.user-thumb img {
+     width: 45px;
+     height: 45px;
+}
+
+.side-nav {
+     &::-webkit-scrollbar {
+          width: 8px;
+     }
+
+     &::-webkit-scrollbar-thumb {
+          background: #fff;
+          border-radius: 16px;
+     }
+
+     &::-webkit-scrollbar-thumb {
+          background: #e8ecef;
+     }
+
+     &::-webkit-scrollbar-track {
+          background: #ffffff;
+     }
+
+     overflow-y: auto;
+     overflow-x: hidden;
+     padding: 0px 4px;
+     height: calc(100vh - 100px);
+}
+
+.side-nav ul li {
+     margin-top: 10px;
+     white-space: nowrap;
+     overflow: hidden;
+     text-overflow: ellipsis;
+}
+
+.side-nav ul {
+     padding-left: 0px;
+}
+
+.side-nav ul li a {
+     color: grey;
+     font-size: 14px;
+     display: flex;
+     align-items: center;
+     width: 100%;
+     padding: 8px 12px;
+     border-radius: 8px;
+     cursor: pointer;
+}
+
+.side-nav ul li a.active {
+     background: #f6f7f8;
+     color: gray;
+}
+
+.side-nav ul li a span {
+     display: inline-block;
+     padding-left: 8px;
+     transition: all 0.5s ease;
+}
+
+.side-nav ul li a:hover {
+     color: grey;
+}
+
+.copyright {
+     font-size: 12px !important;
+     line-height: 15px;
+     position: fixed;
+     bottom: 0;
+     padding: 12px 15px;
+     width: 240px;
+     margin-left: -22px;
+     text-align: center;
+     background-color: #ffffff;
+}

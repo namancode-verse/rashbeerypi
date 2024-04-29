@@ -1,0 +1,15 @@
+.ngx-file-drop__drop-zone {
+     margin: auto !important;
+     border-radius: 0px !important;
+     border: 1px solid #b1b0b0 !important;
+     height: calc(100vh - 240px) !important;
+     padding: 12px 20px !important;
+     overflow: auto !important;
+}
+
+.ngx-file-drop__content {
+     display: flex;
+     align-items: center;
+     justify-content: center;
+     height: calc(100vh - 275px) !important;
+}

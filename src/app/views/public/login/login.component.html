@@ -1,0 +1,56 @@
+<div class="app-login">
+     <div class="login-page">
+          <div class="container-fluid">
+               <div class="row app-brand-nav">
+                    <div class="col-12 col-md-12 col-lg-12 col-xs-12">
+                         <div class="app-brand-logo">
+                              <img (click)="navigateToMainApp()" src="../../../../assets/images/login/app-logo.png" alt="main-logo" />
+                         </div>
+                    </div>
+               </div>
+          </div>
+          <div class="login-content">
+               <div class="container">
+                    <div class="row">
+                         <div class="col-12 col-md-7 col-lg-7 col-sm-7">
+                              <div class="login-left-content">
+                                   <div class="login-page-headline">
+                                        <h2>
+                                             Platform to connect companies to <br />
+                                             college students
+                                        </h2>
+                                   </div>
+                                   <div class="login-image-container">
+                                        <img src="../../../../assets/images/login/img.png" alt="login-image" />
+                                   </div>
+                              </div>
+                         </div>
+                         <div class="col-12 col-md-5 col-lg-5 col-sm-5">
+                              <div class="login-right-content">
+                                   <div class="headline">
+                                        <h2>Log-into Presidency PlacementDrive Portal</h2>
+                                   </div>
+                                   <form role="form" [formGroup]="loginForm" (submit)="login()">
+                                        <div class="input-group">
+                                             <input type="email" formControlName="username" (blur)="logValidationError(loginForm)" class="form-control" id="email" placeholder="Enter roll-no" />
+                                             <span class="form-error" *ngIf="formErrors && formErrors.username">{{ formErrors.username }}</span>
+                                        </div>
+                                        <div class="input-group">
+                                             <input type="password" formControlName="password" (blur)="logValidationError(loginForm)" class="form-control" id="password" placeholder="Enter Password" />
+                                             <span class="form-error" *ngIf="formErrors && formErrors.password">{{ formErrors.password }}</span>
+                                        </div>
+
+                                        <div class="login-button">
+                                             <button type="submit" class="common-btn">Login</button>
+                                        </div>
+                                        <div class="company">
+                                             <button type="submit" class="common-btn">Register as a company</button>
+                                        </div>
+                                   </form>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>

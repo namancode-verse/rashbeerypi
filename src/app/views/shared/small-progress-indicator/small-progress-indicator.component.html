@@ -1,0 +1,14 @@
+<ng-container *ngIf="!isPagination">
+     <span class="small-spinner" [id]="spinnerId">
+          <div class="spinner-border spinner-border-sm" [ngStyle]="{ color: this.color, marginLeft: this.marginLeft, marginRight: this.marginRight, width: this.size, height: this.size }" role="status">
+               <span class="sr-only">Loading...</span>
+          </div>
+     </span>
+</ng-container>
+<ng-container *ngIf="isPagination">
+     <span class="small-spinner" [id]="spinnerId">
+          <div class="spinner-border spinner-border-sm pagination-spinner" [ngStyle]="{ color: this.color, marginLeft: this.marginLeft, marginRight: this.marginRight, width: this.size, height: this.size }" role="status">
+               <span class="sr-only">Loading...</span>
+          </div>
+     </span>
+</ng-container>

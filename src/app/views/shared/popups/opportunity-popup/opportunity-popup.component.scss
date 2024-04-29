@@ -1,0 +1,141 @@
+.building-popup {
+     max-height: calc(100vh - 120px);
+     padding: 12px;
+
+     .app-lite-divider {
+          border-top: 1px solid gainsboro;
+     }
+
+     .popup-box {
+          min-width: 60vw;
+
+          .tilte-with-action-button {
+               display: flex;
+               justify-content: space-between;
+               margin: 12px 0px;
+
+               .field-title {
+                    margin-top: auto;
+                    margin-bottom: auto;
+                    font-size: 20px;
+               }
+
+               .close-button {
+                    font-weight: bold;
+                    font-size: 18px;
+                    color: grey;
+                    cursor: pointer;
+               }
+          }
+     }
+}
+
+.form-container {
+     overflow-y: auto;
+     overflow-x: hidden;
+     max-height: calc(100vh - 240px);
+     padding: 10px 4px;
+}
+
+.forms-fields {
+     padding: 10px;
+     overflow: auto;
+     max-height: calc(100vh - 200px);
+}
+
+.inventory-row {
+     margin-bottom: 12px;
+
+     .widget-column {
+          position: relative;
+          display: flex;
+
+          label {
+               font-weight: 500;
+               color: #424242;
+               font-size: 14px;
+               margin-top: auto;
+               margin-bottom: auto;
+          }
+
+          .drodown-icon {
+               position: absolute;
+               top: 8px;
+               right: 24px;
+               color: #9f9f9f;
+          }
+     }
+
+     .single-field-cell {
+          margin-bottom: 18px;
+     }
+}
+
+.form-group-title {
+     background-color: #f4f4f4;
+     .main-label {
+          font-weight: 600;
+          color: #424242;
+          font-size: 18px;
+          margin-top: auto;
+          margin-bottom: auto;
+     }
+}
+
+.field-errors {
+     font-size: 12px;
+     color: red;
+     font-weight: 500;
+}
+
+.cancel-and-save-button {
+     display: flex;
+     justify-content: flex-end;
+     margin: 12px 0px;
+
+     .save-button,
+     .action-button {
+          button {
+               padding: 0px 30px;
+               line-height: 30px;
+               margin-left: 10px;
+
+               &:focus {
+                    outline: 3px solid #ffa800 !important;
+               }
+          }
+     }
+}
+
+input,
+select,
+textarea {
+     height: 40px;
+     border-radius: 0px;
+     font-size: 15px;
+     padding: 0 10px;
+     background: #f4f5f7;
+
+     &:focus {
+          background: #fff;
+     }
+     &:focus {
+          border-color: #38966c;
+     }
+
+     &::-webkit-input-placeholder {
+          color: transparent;
+     }
+
+     &::-moz-placeholder {
+          color: transparent;
+     }
+
+     &:-ms-input-placeholder {
+          color: transparent;
+     }
+
+     &:-moz-placeholder {
+          color: transparent;
+     }
+}

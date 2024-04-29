@@ -1,0 +1,128 @@
+@import '../../../../../assets/variables/variables.scss';
+
+$image-container-height: calc(100vh - 50px);
+$image-inner-container-height: calc(100vh - 150px);
+
+.upload-images-dialogbox {
+     .main-container {
+          .main-card {
+               overflow: auto;
+               min-width: 80vw;
+               max-width: 80vw;
+               border-radius: 10px;
+               max-height: $image-container-height;
+
+               .card-row {
+                    margin: 0px !important;
+               }
+
+               .tilte-with-action-button {
+                    display: flex;
+                    margin: 12px 0px;
+                    padding: 10px 4px;
+                    justify-content: space-between;
+                    border-bottom: 1px solid #c7c7c7;
+
+                    .field-title {
+                         margin-top: auto;
+                         margin-bottom: auto;
+                         font-size: 20px;
+                    }
+
+                    .close-button {
+                         font-weight: bold;
+                         font-size: 18px;
+                         color: grey;
+                         cursor: pointer;
+                    }
+               }
+
+               .info-and-save-button {
+                    display: flex;
+                    justify-content: space-between;
+                    margin: 12px 0px;
+
+                    .info {
+                         margin-top: auto;
+                         margin-bottom: auto;
+                         font-size: 18px;
+                         font-weight: 600;
+                         color: #494848;
+                         font-family: system-ui;
+                    }
+
+                    .action-button {
+                         button {
+                              color: white !important;
+                              padding: 20px 4px !important;
+                              min-width: 200px !important;
+                              background-color: #1fb35b !important;
+                         }
+                    }
+               }
+
+               .file-view-widget {
+                    overflow: auto;
+                    min-height: calc(100vh - 180px);
+                    max-height: calc(100vh - 180px);
+               }
+
+               .widget-row {
+                    margin: 0px;
+                    padding: 0px;
+
+                    .image-column {
+                         padding: 2px;
+                    }
+
+                    .selected-image-container {
+                         position: relative;
+                         background-color: #f3f3f3;
+                         margin: 4px;
+                         text-align: center;
+                         padding: 6px 6px;
+                    }
+
+                    .select-file-button {
+                         display: flex;
+                         justify-content: center;
+
+                         button {
+                              color: white !important;
+                              padding: 24px 4px !important;
+                              background-color: #1fb35b !important;
+                              min-width: 220px !important;
+                              border-radius: 500px !important;
+                         }
+                    }
+               }
+
+               img {
+                    height: 240px;
+                    width: auto;
+               }
+
+               .image-container {
+                    text-align: center;
+                    padding: 16px 16px;
+                    img {
+                         height: 350px !important;
+                         width: auto;
+                    }
+               }
+          }
+
+          .unselect-content-button {
+               cursor: pointer;
+               color: white;
+               position: absolute;
+               z-index: 20;
+               right: 10px;
+               top: 10px;
+               font-size: 20px;
+               background-color: #535353bf;
+               border-radius: 100%;
+               padding: 10px 14px;
+          }
+     }
+}

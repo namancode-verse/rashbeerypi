@@ -1,0 +1,150 @@
+<section class="find-best-properties has-space-cal">
+     <div *ngIf="searchFilterDetails" class="container">
+          <div class="row">
+               <div class="col-md-12">
+                    <div class="search-header">
+                         <span>Properties List</span>
+                    </div>
+               </div>
+               <div class="col-12 col-lg-12 col-md-12 col-xs-12">
+                    <form role="form" (submit)="searchWithFreeText()" [formGroup]="buildingSearchForm">
+                         <div class="subheader-and-action-button">
+                              <div class="subheader">
+                                   <span>Upload and manage your properties effectively</span>
+                              </div>
+                              <div class="action-button">
+                                   <div class="add-new-button">
+                                        <button type="button" (click)="navigateToNextScreen('/inventory/building')" class="common-btn space-calculator-btn">
+                                             <span>Add New</span>
+                                        </button>
+                                   </div>
+                                   <div class="bulk-upload-button">
+                                        <button type="button" class="common-btn space-calculator-btn">
+                                             <span>Bulk Upload</span>
+                                        </button>
+                                   </div>
+                              </div>
+                         </div>
+
+                         <div class="search-field-row">
+                              <div class="container-fluid search-container-fluid noselect">
+                                   <div class="row">
+                                        <ng-container *ngIf="searchFilterDetails['TypeOfSpace']">
+                                             <div class="col">
+                                                  <div class="search-category-container has-multiple-select range-card">
+                                                       <i class="fa-solid fa-angle-down"></i>
+                                                       <span *ngIf="clearIconFlags.isValidTypeOfSpace" (click)="clearAndSeachBuilding('TypeOfSpace')" class="select-clear-icon"><i class="fa-solid fa-xmark"></i></span>
+                                                       <ng-multiselect-dropdown [placeholder]="'Type Of Space'" [settings]="dsettings" [data]="searchFilterDetails['TypeOfSpace']" (onSelect)="searchWithFilter($event)" (onDeSelect)="searchWithFilter($event)" (onSelectAll)="searchWithFilter($event)" (onDeSelectAll)="searchWithFilter($event)" formControlName="typeOfSpace"> </ng-multiselect-dropdown>
+                                                  </div>
+                                             </div>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="searchFilterDetails['BuildingTitle']">
+                                             <div class="col">
+                                                  <div class="search-category-container has-multiple-select range-card">
+                                                       <i class="fa-solid fa-angle-down"></i>
+                                                       <span *ngIf="clearIconFlags.isValidMicroMarket" (click)="clearAndSeachBuilding('MicroMarket')" class="select-clear-icon"><i class="fa-solid fa-xmark"></i></span>
+                                                       <ng-multiselect-dropdown [placeholder]="'Type Of Buildings'" [settings]="dsettings" [data]="searchFilterDetails['BuildingTitle']" (onSelect)="searchWithFilter($event)" (onDeSelect)="searchWithFilter($event)" (onSelectAll)="searchWithFilter($event)" (onDeSelectAll)="searchWithFilter($event)" formControlName="micromarket">
+                                                       </ng-multiselect-dropdown>
+                                                  </div>
+                                             </div>
+                                        </ng-container>
+                                        <ng-container *ngIf="searchFilterDetails['GeographyWise']">
+                                             <div class="col">
+                                                  <div class="search-category-container has-multiple-select range-card">
+                                                       <i class="fa-solid fa-angle-down"></i>
+                                                       <span *ngIf="clearIconFlags.isValidCategory" (click)="clearAndSeachBuilding('Category')" class="select-clear-icon"><i class="fa-solid fa-xmark"></i></span>
+                                                       <ng-multiselect-dropdown [placeholder]="'Geography Wise'" [settings]="dsettings" [data]="searchFilterDetails['GeographyWise']" (onSelect)="searchWithFilter($event)" (onDeSelect)="searchWithFilter($event)" (onSelectAll)="searchWithFilter($event)" (onDeSelectAll)="searchWithFilter($event)" formControlName="category"> </ng-multiselect-dropdown>
+                                                  </div>
+                                             </div>
+                                        </ng-container>
+
+                                        <ng-container *ngIf="true">
+                                             <div class="col">
+                                                  <div class="search-category-container has-multiple-select range-card">
+                                                       <i class="fa-solid fa-angle-down"></i>
+                                                       <span *ngIf="clearIconFlags.isValidCategory" (click)="clearAndSeachBuilding('Category')" class="select-clear-icon"><i class="fa-solid fa-xmark"></i></span>
+                                                       <div class="move-in-date-time">
+                                                            <div class="calendar">
+                                                                 <mat-form-field class="example-full-width">
+                                                                      <input #DatePickerField matInput (dateChange)="getMoveInDateTime($event)" [matDatepicker]="picker" />
+                                                                      <mat-datepicker #picker></mat-datepicker>
+                                                                 </mat-form-field>
+                                                            </div>
+                                                            <div (click)="picker.open()" class="calendar-button" [ngClass]="selectedMoveInDateTime ? 'active-calendar-button' : 'deactive-calendar-button'">
+                                                                 <div class="button">
+                                                                      <ng-container *ngIf="!selectedMoveInDateTime">
+                                                                           <span>Move In Date Time</span>
+                                                                      </ng-container>
+                                                                      <ng-container *ngIf="selectedMoveInDateTime">
+                                                                           {{ selectedMoveInDateTime | date : 'medium' }}
+                                                                      </ng-container>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </ng-container>
+
+                                        <div class="col area-sqft-column">
+                                             <div class="search-category-container area-range-bar">
+                                                  <div class="range-card">
+                                                       <span class="clear-icon" *ngIf="rcard.areaInSqFt.dtext" (click)="clearAndSeachBuilding('AreaSQFT')"><i class="fa-solid fa-xmark"></i></span>
+                                                       <p data-bs-toggle="dropdown" aria-expanded="false">
+                                                            <label class="c-pointer" *ngIf="!rcard.areaInSqFt.dtext">Area Range In Sq Ft</label>
+                                                            <label class="c-pointer" *ngIf="rcard.areaInSqFt.dtext">{{ rcard.areaInSqFt.dtext }}</label>
+                                                            <i class="fa-solid fa-angle-down"></i>
+                                                       </p>
+                                                       <div onclick="event.stopPropagation()" class="range-card-header dropdown-menu area-dropdown-menu range-card-header-align-left">
+                                                            <div class="card-body" formGroupName="areaInSqFt">
+                                                                 <div class="min-max">
+                                                                      <input [maxLength]="7" type="text" placeholder="Min SF" formControlName="amin" />
+                                                                      - <input [maxLength]="7" type="text" placeholder="Max SF" formControlName="amax" />
+                                                                 </div>
+                                                                 <div class="search-form-error">
+                                                                      <span *ngIf="formErrors && formErrors.amin">
+                                                                           <div class="rentrange-areasqft-error">{{ formErrors.amin }}</div>
+                                                                      </span>
+                                                                      <span *ngIf="formErrors && formErrors.amax">
+                                                                           <div class="rentrange-areasqft-error">{{ formErrors.amax }}</div>
+                                                                      </span>
+                                                                 </div>
+                                                                 <div class="check-box-list noselect">
+                                                                      <ul>
+                                                                           <li>
+                                                                                <label>
+                                                                                     <input type="checkbox" [checked]="searchedFor.unit.value" (click)="toggleSearchCriteria('unit')" />
+                                                                                     <span>Single Unit</span>
+                                                                                </label>
+                                                                           </li>
+                                                                           <li>
+                                                                                <label>
+                                                                                     <input type="checkbox" [checked]="searchedFor.floor.value" (click)="toggleSearchCriteria('floor')" />
+                                                                                     <span>Same Floor</span>
+                                                                                </label>
+                                                                           </li>
+                                                                           <li>
+                                                                                <label>
+                                                                                     <input type="checkbox" [checked]="searchedFor.building.value" (click)="toggleSearchCriteria('building')" />
+                                                                                     <span>Entire Building</span>
+                                                                                </label>
+                                                                           </li>
+                                                                      </ul>
+                                                                 </div>
+                                                                 <div class="apply-button">
+                                                                      <button type="button" (click)="findByRentAndAreaInSQFT('AreaInSQFT')" class="common-btn">Apply</button>
+                                                                 </div>
+                                                            </div>
+                                                       </div>
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                         </div>
+                    </form>
+               </div>
+          </div>
+     </div>
+</section>
+<div class="logged-listing-gapper"></div>

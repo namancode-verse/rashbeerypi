@@ -1,0 +1,152 @@
+@import '../../../../../assets/variables/variables.scss';
+
+.upload-file-dialogbox {
+     .main-container {
+          .main-card {
+               overflow: auto;
+               min-width: 60vw;
+               padding: 10px 12px 24px 12px;
+
+               .card-row {
+                    margin: 0px !important;
+               }
+
+               .inner-main-title {
+                    margin: 8px 0px;
+               }
+
+               .title-with-action-button {
+                    display: flex;
+                    justify-content: space-between;
+
+                    .main-title {
+                         color: grey;
+                         font-size: 20px;
+                         font-weight: 400;
+                    }
+
+                    .action-button {
+                         .close-button {
+                              font-weight: bold;
+                              font-size: 18px;
+                              color: grey;
+                              cursor: pointer;
+                         }
+                    }
+               }
+
+               .file-container {
+                    .upload-icon {
+                         text-align: center;
+                         font-size: 30px;
+                         color: #a6a6a6;
+                         margin-bottom: 16px;
+
+                         img {
+                              width: 160px;
+                              height: auto;
+                         }
+                    }
+
+                    .title {
+                         text-align: center;
+                         font-size: 22px;
+                         color: #3eb26d;
+                         font-weight: 600;
+                         margin-top: 10px;
+                    }
+
+                    .subtitle {
+                         text-align: center;
+                         font-size: 16px;
+                         color: #615f5f;
+                         margin-top: 16px;
+                    }
+
+                    .action-button {
+                         text-align: center;
+                         font-size: 16px;
+                         color: grey;
+                         margin-top: 12px;
+
+                         button {
+                              line-height: 30px !important;
+                         }
+                    }
+
+                    .file-upload-button {
+                         color: white !important;
+                         padding: 24px 24px !important;
+                         background-color: #1fb35b !important;
+                    }
+               }
+
+               .footer-action-button {
+                    display: flex;
+                    justify-content: flex-end;
+                    .action-button {
+                         margin-left: 10px;
+
+                         button {
+                              color: white !important;
+                              padding: 24px 24px !important;
+                              background-color: #1fb35b !important;
+                         }
+                    }
+               }
+
+               .selected-file-container {
+                    border: 1px solid #b1b0b0;
+
+                    .upload-icon {
+                         padding: 24px 30px;
+                         display: flex;
+                         justify-content: center;
+
+                         img {
+                              width: 200px;
+                              height: auto;
+                         }
+                    }
+
+                    .selected-file-box {
+                         padding: 10px 60px;
+                         max-height: 160px;
+                         overflow: auto;
+
+                         .selected-file-name {
+                              padding: 16px 16px;
+                              background-color: #f8f4b3;
+                              display: flex;
+                              justify-content: space-between;
+                              margin-bottom: 4px;
+
+                              .name {
+                                   color: #7b7b7b;
+                                   font-weight: 600;
+                              }
+
+                              .clear-button {
+                                   color: #7b7b7b;
+                                   font-size: 20px;
+                                   cursor: pointer;
+                              }
+                         }
+                    }
+
+                    .action-button {
+                         display: flex;
+                         justify-content: center;
+                         padding: 30px 12px;
+                    }
+
+                    .file-upload-button {
+                         color: white !important;
+                         padding: 24px 4px !important;
+                         background-color: #1fb35b !important;
+                         min-width: 220px !important;
+                    }
+               }
+          }
+     }
+}

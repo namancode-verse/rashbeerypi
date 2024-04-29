@@ -1,0 +1,28 @@
+.organization {
+     .common-view {
+          padding: 15px 10px;
+     }
+}
+
+.dropdown-icon {
+     position: absolute;
+     top: 30px;
+     right: 12px;
+}
+
+.next-previous-button {
+     display: flex;
+     justify-content: flex-end;
+     padding: 12px 0px;
+     button {
+          margin-left: 10px;
+          min-width: 160px;
+     }
+}
+
+.field-errors {
+     font-size: 14px;
+     font-weight: 500;
+     color: red;
+     margin-top: -10px;
+}

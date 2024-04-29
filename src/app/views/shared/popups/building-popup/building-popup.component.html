@@ -1,0 +1,169 @@
+<ng-container *ngIf="dialogboxDetails">
+     <div class="building-popup">
+          <div class="popup-box" [ngStyle]="{ 'max-width': dialogBoxMaxWidth }">
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="tilte-with-action-button">
+                              <div class="field-title">
+                                   <ng-container *ngIf="dialogboxDetails.action.title">
+                                        <b> {{ dialogboxDetails.action.title }} </b>
+                                   </ng-container>
+                              </div>
+                              <div (click)="hidePopupBox()" class="close-button">
+                                   <i class="fas fa-times"></i>
+                              </div>
+                         </div>
+                    </div>
+               </div>
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="form-container">
+                              <form role="form" [formGroup]="popupInventoryForm" *ngIf="popupInventoryForm">
+                                   <div class="row">
+                                        <ng-container *ngIf="this.dialogboxDetails['action']['level'] != 'LEASE'">
+                                             <ng-container *ngFor="let element of popupInventoryTemplate | keyvalue : keepOrder; index as elementIndex">
+                                                  <ng-container *ngTemplateOutlet="SingleFormTemplate; context: { data: { formGroup: popupInventoryForm, element: element, elementIndex: elementIndex } }"></ng-container>
+                                             </ng-container>
+                                        </ng-container>
+                                        <ng-container *ngIf="this.dialogboxDetails['action']['level'] == 'LEASE'">
+                                             <ng-container *ngFor="let element of popupInventoryTemplate | keyvalue : keepOrder; index as elementIndex">
+                                                  <ng-container *ngTemplateOutlet="NestedFormTemplate; context: { data: { formGroup: popupInventoryForm, element: element, elementIndex: elementIndex } }"></ng-container>
+                                             </ng-container>
+                                        </ng-container>
+                                   </div>
+                              </form>
+                         </div>
+                    </div>
+
+                    <div class="col-md-12">
+                         <div class="cancel-and-save-button">
+                              <ng-container *ngIf="dialogboxDetails">
+                                   <div class="action-button">
+                                        <button mat-raised-button type="submit" (click)="hidePopupBox()" color="primary">
+                                             <span>Cancel</span>
+                                        </button>
+                                   </div>
+                                   <div class="save-button">
+                                        <button mat-raised-button type="submit" (click)="submitpopupInventoryForm()" color="primary">
+                                             <span>Save</span>
+                                        </button>
+                                   </div>
+                              </ng-container>
+                         </div>
+                    </div>
+               </div>
+          </div>
+     </div>
+</ng-container>
+
+<ng-template #SingleFormTemplate let-object="data">
+     <div class="col-md-4" [formGroup]="object.formGroup">
+          <ng-container *ngIf="object.element.value.tag != 'textarea'">
+               <div class="inventory-row row">
+                    <div class="col-md-12 widget-column">
+                         <label [for]="object.element.value.name">
+                              {{ object.element.value.label }}
+                         </label>
+                    </div>
+                    <div class="col-md-12 widget-column">
+                         <ng-container *ngIf="object.element.value.tag == 'input'">
+                              <ng-container *ngIf="object.element.value.type == 'text'">
+                                   <input type="text" (blur)="displaySingleFormError()" [id]="object.element.value.name" [formControlName]="object.element.value.name" [value]="object.element.value.default.value" class="form-control" />
+                              </ng-container>
+                              <ng-container *ngIf="object.element.value.type == 'date'">
+                                   <input type="date" (blur)="displaySingleFormError()" [id]="object.element.value.name" [formControlName]="object.element.value.name" [value]="object.element.value.default.value" class="form-control" />
+                              </ng-container>
+                         </ng-container>
+                         <ng-container *ngIf="object.element.value.tag == 'select'">
+                              <ng-container *ngIf="object.element.value.type == 'dropdown'">
+                                   <select [id]="object.element.value.name" (blur)="displaySingleFormError()" [formControlName]="object.element.value.name" [value]="object.element.value.default.value" class="form-control">
+                                        <ng-container *ngIf="object.element.value.options && object.element.value.options.length > 0">
+                                             <ng-container *ngFor="let element of object.element.value.options">
+                                                  <option [value]="element.value">{{ element.name }}</option>
+                                             </ng-container>
+                                        </ng-container>
+                                   </select>
+                                   <span class="drodown-icon">
+                                        <i class="fas fa-chevron-down"></i>
+                                   </span>
+                              </ng-container>
+                         </ng-container>
+                    </div>
+               </div>
+          </ng-container>
+          <ng-container *ngIf="formErrors && formErrors[object.element.value.name]">
+               <div class="row">
+                    <div class="col-md-12">
+                         <div class="field-errors">
+                              {{ formErrors[object.element.value.name] }}
+                         </div>
+                    </div>
+               </div>
+          </ng-container>
+     </div>
+</ng-template>
+
+<ng-template #NestedFormTemplate let-object="data">
+     <div [formGroup]="object.formGroup">
+          <div formGroupName="{{ object.element.key }}">
+               <div class="row inventory-row form-group-title">
+                    <div class="col-md-12 widget-column">
+                         <span class="main-label">
+                              {{ beautifyLabel(object.element.key) }}
+                         </span>
+                    </div>
+               </div>
+               <div class="row inventory-row">
+                    <ng-container *ngFor="let childElement of object.element.value | keyvalue : keepOrder">
+                         <div [ngClass]="object.element.key == 'RentalAndSecurityDetails' || object.element.key == 'MiscellaneousInformation' ? 'col-md-6' : 'col-md-4'">
+                              <div class="single-field-cell">
+                                   <div class="row">
+                                        <div class="col-md-12 widget-column">
+                                             <label [for]="childElement.value.name">
+                                                  {{ childElement.value.label }}
+                                             </label>
+                                        </div>
+                                        <div class="col-md-12 widget-column">
+                                             <ng-container *ngIf="childElement.value.tag == 'input'">
+                                                  <ng-container *ngIf="childElement.value.type == 'text'">
+                                                       <input type="text" (blur)="displayNestedFormSingleError(object.element.key)" [id]="childElement.value.name" [formControlName]="childElement.value.name" [value]="childElement.value.default.value" class="form-control" />
+                                                  </ng-container>
+                                                  <ng-container *ngIf="childElement.value.type == 'date'">
+                                                       <input type="date" (blur)="displayNestedFormSingleError(object.element.key)" [id]="childElement.value.name" [formControlName]="childElement.value.name" [value]="childElement.value.default.value" class="form-control" />
+                                                  </ng-container>
+                                             </ng-container>
+                                             <ng-container *ngIf="childElement.value.tag == 'select'">
+                                                  <ng-container *ngIf="childElement.value.type == 'dropdown'">
+                                                       <select [id]="childElement.value.name" (blur)="displayNestedFormSingleError(object.element.key)" [formControlName]="childElement.value.name" [value]="childElement.value.default.value" class="form-control">
+                                                            <ng-container *ngIf="childElement.value.options && childElement.value.options.length > 0">
+                                                                 <ng-container *ngFor="let element of childElement.value.options">
+                                                                      <option [value]="element.value">{{ element.name }}</option>
+                                                                 </ng-container>
+                                                            </ng-container>
+                                                       </select>
+                                                       <span class="drodown-icon">
+                                                            <i class="fas fa-chevron-down"></i>
+                                                       </span>
+                                                  </ng-container>
+                                             </ng-container>
+                                             <ng-container *ngIf="childElement.value.tag == 'multi-select'">
+                                                  <ng-container *ngIf="childElement.value.type == 'multiDropdown'">
+                                                       <app-multi-select [placeHolder]="'Select ' + childElement.value.label" [options]="childElement.value.options" (change)="printBuildingCertifications($event)" [formControlName]="childElement.value.name"></app-multi-select>
+                                                  </ng-container>
+                                             </ng-container>
+                                        </div>
+                                        <ng-container *ngIf="formErrors && formErrors[object.element.key] && formErrors[object.element.key][childElement.value.name]">
+                                             <div class="col-md-12">
+                                                  <div class="field-errors">
+                                                       {{ formErrors[object.element.key][childElement.value.name] }}
+                                                  </div>
+                                             </div>
+                                        </ng-container>
+                                   </div>
+                              </div>
+                         </div>
+                    </ng-container>
+               </div>
+          </div>
+     </div>
+</ng-template>

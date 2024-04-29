@@ -1,0 +1,150 @@
+<div class="opportunity">
+     <div class="container-fluid">
+          <div class="row">
+               <div class="col-md-12 p-0">
+                    <ng-container *ngIf="filteredBuildingUnitList && filteredBuildingUnitList.length > 0">
+                         <div class="common-view-tbl">
+                              <div class="common-view-tbl-header">
+                                   <div class="container-fluid">
+                                        <div class="row">
+                                             <div class="col-auto">
+                                                  <h4>
+                                                       Building Units <span> ({{ filteredBuildingUnitList.length }}) </span>
+                                                  </h4>
+                                             </div>
+                                             <div class="col">
+                                                  <ul class="tbl-view-btn">
+                                                       <li>
+                                                            <button type="button">
+                                                                 <i class="fa-solid fa-arrow-rotate-right"></i>
+                                                            </button>
+                                                       </li>
+                                                       <li>
+                                                            <button (click)="createUnit()" type="button"><i class="fa-solid fa-plus"></i> <span>Add New</span></button>
+                                                       </li>
+                                                  </ul>
+                                             </div>
+                                        </div>
+                                        <div class="row">
+                                             <div class="col-md-12">
+                                                  <div class="common-tbl-search">
+                                                       <i class="fa-solid fa-magnifying-glass"></i>
+                                                       <input type="search" placeholder="Search your text here..." [(ngModel)]="tableSearchText" (input)="searchByFreeText()" />
+                                                  </div>
+                                             </div>
+                                        </div>
+                                   </div>
+                              </div>
+                              <div class="common-view-tbl-body">
+                                   <table>
+                                        <thead>
+                                             <tr>
+                                                  <th><input type="text" type="checkbox" /></th>
+                                                  <th scope="col" [appSort]="filteredBuildingUnitList" data-order="asc" data-name="FloorNumber">
+                                                       Floor Number
+                                                       <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                       <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                                  </th>
+                                                  <th scope="col" [appSort]="filteredBuildingUnitList" data-order="asc" data-name="UnitName">
+                                                       Unit Name
+                                                       <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                       <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                                  </th>
+                                                  <th scope="col" [appSort]="filteredBuildingUnitList" data-order="asc" data-name="UnitStatus">
+                                                       Unit Status
+                                                       <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                       <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                                  </th>
+
+                                                  <th scope="col" [appSort]="filteredBuildingUnitList" data-order="asc" data-name="Availability">
+                                                       Availability
+                                                       <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                       <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                                  </th>
+
+                                                  <th scope="col" [appSort]="filteredBuildingUnitList" data-order="asc" data-name="OccupierName">
+                                                       Occupier Name
+                                                       <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                       <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                                  </th>
+                                                  <th scope="col" [appSort]="filteredBuildingUnitList" data-order="asc" data-name="RentRange">
+                                                       Rent Range
+                                                       <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                       <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                                  </th>
+                                                  <th scope="col" [appSort]="filteredBuildingUnitList" data-order="asc" data-name="UnitArea">
+                                                       Unit Area
+                                                       <i class="fa-solid fa-arrow-down-short-wide"></i>
+                                                       <i class="fa-solid fa-arrow-up-short-wide"></i>
+                                                  </th>
+                                                  <th style="width: 120px; text-align: center">Action</th>
+                                             </tr>
+                                        </thead>
+                                        <tr class="tbl-search-tag">
+                                             <td></td>
+                                             <td><input type="text" type="search" placeholder="Search" /></td>
+                                             <td><input type="text" type="search" placeholder="Search" /></td>
+                                             <td><input type="text" type="search" placeholder="Search" /></td>
+                                             <td><input type="text" type="search" placeholder="Search" /></td>
+                                             <td><input type="text" type="search" placeholder="Search" /></td>
+                                             <td><input type="text" type="search" placeholder="Search" /></td>
+                                             <td><input type="text" type="search" placeholder="Search" /></td>
+                                             <td style="width: 120px"></td>
+                                        </tr>
+                                        <tbody>
+                                             <ng-container *ngIf="filteredBuildingUnitList && filteredBuildingUnitList.length > 0">
+                                                  <ng-container *ngFor="let element of filteredBuildingUnitList">
+                                                       <ng-container *ngIf="element.IsActive">
+                                                            <tr>
+                                                                 <td><input type="text" type="checkbox" /></td>
+                                                                 <td>{{ element.FloorNumber }}</td>
+                                                                 <td>
+                                                                      <button class="tbl-link" type="button">{{ element.UnitName }}</button>
+                                                                 </td>
+
+                                                                 <td>{{ element.UnitStatus }}</td>
+                                                                 <td>{{ element.Availability }}</td>
+                                                                 <td>{{ element.OccupierName }}</td>
+                                                                 <td>{{ element.RentRange }}</td>
+                                                                 <td>{{ element.UnitArea }}</td>
+
+                                                                 <td style="width: 120px">
+                                                                      <ul class="tbl-action-icon">
+                                                                           <li title="Upload Images">
+                                                                                <button (click)="showUploadImagePopupBox(element, 'UnitImage')" class="button">
+                                                                                     <i class="fas fa-image"></i>
+                                                                                </button>
+                                                                           </li>
+                                                                           <li>
+                                                                                <button title="Edit Unit" (click)="editUnit(element)" class="button">
+                                                                                     <i class="fa-solid fa-pen-to-square"></i>
+                                                                                </button>
+                                                                           </li>
+                                                                           <li>
+                                                                                <button title="Remove Unit" (click)="removeUnitPopup(element)" class="button">
+                                                                                     <i class="fa-regular fa-trash-can"></i>
+                                                                                </button>
+                                                                           </li>
+                                                                      </ul>
+                                                                 </td>
+                                                            </tr>
+                                                       </ng-container>
+                                                  </ng-container>
+                                             </ng-container>
+                                        </tbody>
+                                   </table>
+                              </div>
+                         </div>
+                    </ng-container>
+               </div>
+
+               <div class="col-md-12 p-0">
+                    <div class="text-center">
+                         <button [disabled]="!isExistFloors" (click)="createUnit()" mat-raised-button color="primary">
+                              <span>Add New Unit</span>
+                         </button>
+                    </div>
+               </div>
+          </div>
+     </div>
+</div>
